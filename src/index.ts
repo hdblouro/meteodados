@@ -103,7 +103,6 @@ function compare(a:Meteo,b:Meteo) {
     return 0;
   }
 
- 
 medias.sort(compare);
 
 var y = 0;
@@ -120,51 +119,58 @@ for (x = 0; x < medias.length; x++) {
     }
 }
 
-
-// Resolução do Exercícios D
+// Resolução dos Exercícios D e E
 // D - Informar a média de todas as temperaturas cadastradas; 
+// E - Informar a média geral das médias de vento cadastradas;
 
 console.log("\n<< Exercício D >>\n");
 let media:number = 0;
+let mediaventos:number = 0;
 
 medias.forEach(m => {
     media += m.Temp_C;
+    mediaventos += m.WindSpeed_Avg;
 });
 
 media /= medias.length;
+mediaventos /= medias.length;
 
 console.log("A média de todas as temperaturas é: ", media.toLocaleString("pt-BR",{maximumFractionDigits: 2}),"°C");
 
-/*console.log("\n<< Exercício E >>\n");
+console.log("\n<< Exercício E >>\n");
 
-console.log("Total Ganhadores:", ganhadores);
-console.log("Total Prêmios Pagos:", total.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'}));
+console.log("A média das Médias das Velocidades dos Ventos é: ", mediaventos.toLocaleString("pt-BR",{maximumFractionDigits: 2}));
 
 // Resolução do Exercício F
-// Informar os 3 maiores prêmios pagos, a quantidade de ganhadores e quanto cada um recebeu
-
-var premios: number[][] = [];
-var w = 0;
-mega.forEach(m => { // faz a leitura de cada objeto Mega do array mega colocando-o em m
-    premios[w] = []; // inicializa a linha do array premio
-    premios[w].push(m.ganhadores); // coloca na primeira coluna a quantidade de ganhadores do sorteio
-    premios[w].push(m.premio); // coloca na segunda coluna o valor do prêmio
-    w++;
-}); // fecha mega.forEach
-
-premios.sort(sort_columnWise);
-
-// lista os três primeiros maiores prêmios pagos
+// Informar os três dias em que foram observadas as maiores medições
+// de pressão atmosférica. Se ocorrer empate, listar todas na ordem por dia;
 
 console.log("\n<< Exercício F >>\n");
-for (var i = 0; i < 3; i++) {
-    console.log(i+1,"º Prêmio: ", premios[i][1].toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'}));
-    console.log("Ganhadores: ",premios[i][0]);
-    if(premios[i][1] > 0){
-        console.log("Divisão: ", (premios[i][1]/premios[i][0]).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'}),"\n");        
+
+function compare2(a:Meteo,b:Meteo) {
+    if (a.Press_Bar > b.Press_Bar)
+       return -1;
+    if (a.Press_Bar < b.Press_Bar)
+      return 1;
+    return 0;
+  }
+
+medias.sort(compare2);
+
+var y = 0;
+var ant = medias[0].Press_Bar;
+
+for (x = 0; x < medias.length; x++) {
+    console.log((y+1)+"º","Dia:", medias[x].Data.toLocaleDateString("pt-BR"),"Pressão Atmosférica Média: ", medias[x].Press_Bar.toLocaleString("pt-BR",{maximumFractionDigits: 2}),"Pa");
+    if(ant != medias[x].Temp_C){
+        y++;
+        ant = medias[x].Temp_C;
+    }
+    if(y==3){
+        break;
     }
 }
-
+/*
 // Resolução do Exercício G
 // Informar o ano com maior número de apostas.
 
