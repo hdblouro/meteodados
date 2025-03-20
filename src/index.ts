@@ -110,7 +110,7 @@ var y = 0;
 var ant = medias[0].Temp_C;
 console.log("<< Exercício C >>\n");
 for (x = 0; x < medias.length; x++) {
-    console.log("Dia:", medias[x].Data.toLocaleString(),"Temperatura Média: ", medias[x].Temp_C.toLocaleString("pt-BR"),"°C");
+    console.log("Dia:", medias[x].Data.toLocaleDateString("pt-BR"),"Temperatura Média: ", medias[x].Temp_C.toLocaleString("pt-BR",{maximumFractionDigits: 2}),"°C");
     if(ant != medias[x].Temp_C){
         y++;
         ant = medias[x].Temp_C;
@@ -133,7 +133,7 @@ medias.forEach(m => {
 
 media /= medias.length;
 
-console.log("A média de todas as temperaturas é: ", media.toLocaleString("pt-BR"),"°C");
+console.log("A média de todas as temperaturas é: ", media.toLocaleString("pt-BR",{maximumFractionDigits: 2}),"°C");
 
 /*console.log("\n<< Exercício E >>\n");
 
