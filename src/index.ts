@@ -126,14 +126,16 @@ for (x = 0; x < medias.length; x++) {
 console.log("\n<< Exercício D >>\n");
 let media:number = 0;
 let mediaventos:number = 0;
-
+let mediaumidade:number = 0;
 medias.forEach(m => {
     media += m.Temp_C;
     mediaventos += m.WindSpeed_Avg;
+    mediaumidade += m.Hum;
 });
 
 media /= medias.length;
 mediaventos /= medias.length;
+mediaumidade /= medias.length;
 
 console.log("A média de todas as temperaturas é: ", media.toLocaleString("pt-BR",{maximumFractionDigits: 2}),"°C");
 
@@ -170,50 +172,10 @@ for (x = 0; x < medias.length; x++) {
         break;
     }
 }
-/*
+
 // Resolução do Exercício G
-// Informar o ano com maior número de apostas.
+// Informar a média geral da medição do percentual de umidade do ar.
 
 console.log("\n<< Exercício G >>\n");
 
-var apostas: number[] = [];
-
-for(x=0;x<29;x++){
-    apostas.push(0);
-}
-
-mega.forEach(sorteio =>{
-    apostas[parseInt(sorteio.data.substring(6,10))-1996] += sorteio.apostas;
-})
-
-var anoapostas:number = 0;
-var quant:number = 0;
-
-for(x=0;x<29;x++){
-    if (apostas[x]>quant){
-        quant = apostas[x];
-        anoapostas = 1996+x;
-    }
-}
-
-console.log("Ano:",anoapostas);
-console.log("Apostas:", quant.toLocaleString('pt-BR', {style: 'decimal', minimumFractionDigits: 0}));
-
-// Callback function to sort array according to the third column.
-// If callback function will return 1, sort() method swap the row, Otherwise not.
-
-function sort_columnWise(
-    firstRow: Array<number>,
-    secondRow: Array<number>
-): number {
-    if (firstRow[2] === secondRow[2]) { // coluna Temp_C
-        return 0;
-    } else {
-        if (firstRow[2] > secondRow[2]) {
-            return -1;
-        }
-
-        return 1;
-    }
-}
-*/
+console.log("A média de totas as medições de Umidade Relativa do Ar é: ", mediaumidade.toLocaleString("pt-BR",{maximumFractionDigits: 2}),"%");
