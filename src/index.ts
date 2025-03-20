@@ -93,30 +93,12 @@ while (x < meteo.length) {
     }
 }
 
-console.log(medias);
-
-/*
-// Callback function to sort array according to the third column.
-// If callback function will return 1, sort() method swap the row, Otherwise not.
-function sort_columnWise(
-    firstRow: Array<number>,
-    secondRow: Array<number>
-): number {
-    if (firstRow[1] === secondRow[1]) {
-        return 0;
-    } else {
-        if (firstRow[1] > secondRow[1]) {
-            return -1;
-        }
-
-        return 1;
-    }
-}
+// console.log(medias);
 
 function compare(a:Meteo,b:Meteo) {
-    if (a.Temp_C < b.Temp_C)
-       return -1;
     if (a.Temp_C > b.Temp_C)
+       return -1;
+    if (a.Temp_C < b.Temp_C)
       return 1;
     return 0;
   }
@@ -137,9 +119,28 @@ for (x = 0; x < medias.length; x++) {
     }
 }
 
+/*
 // Resolução do Exercícios D e E
 // D - Informar o total de prêmios pagos ano a ano, desde 1996
 // E - Informar a quantidade total de ganhadores da Sena e o valor total dos prêmios pagos a eles
+
+// Callback function to sort array according to the third column.
+// If callback function will return 1, sort() method swap the row, Otherwise not.
+
+function sort_columnWise(
+    firstRow: Array<number>,
+    secondRow: Array<number>
+): number {
+    if (firstRow[2] === secondRow[2]) { // coluna Temp_C
+        return 0;
+    } else {
+        if (firstRow[2] > secondRow[2]) {
+            return -1;
+        }
+
+        return 1;
+    }
+}
 
 console.log("\n<< Exercício D >>\n");
 
