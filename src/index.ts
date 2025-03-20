@@ -110,7 +110,7 @@ var y = 0;
 var ant = medias[0].Temp_C;
 console.log("<< Exercício C >>\n");
 for (x = 0; x < medias.length; x++) {
-    console.log("Dia:", medias[x].Data , "Temperatura Média: ", medias[x].Temp_C);
+    console.log("Dia:", medias[x].Data.toLocaleString(),"Temperatura Média: ", medias[x].Temp_C.toLocaleString("pt-BR"),"°C");
     if(ant != medias[x].Temp_C){
         y++;
         ant = medias[x].Temp_C;
@@ -120,50 +120,22 @@ for (x = 0; x < medias.length; x++) {
     }
 }
 
-/*
-// Resolução do Exercícios D e E
-// D - Informar o total de prêmios pagos ano a ano, desde 1996
-// E - Informar a quantidade total de ganhadores da Sena e o valor total dos prêmios pagos a eles
 
-// Callback function to sort array according to the third column.
-// If callback function will return 1, sort() method swap the row, Otherwise not.
-
-function sort_columnWise(
-    firstRow: Array<number>,
-    secondRow: Array<number>
-): number {
-    if (firstRow[2] === secondRow[2]) { // coluna Temp_C
-        return 0;
-    } else {
-        if (firstRow[2] > secondRow[2]) {
-            return -1;
-        }
-
-        return 1;
-    }
-}
+// Resolução do Exercícios D
+// D - Informar a média de todas as temperaturas cadastradas; 
 
 console.log("\n<< Exercício D >>\n");
+let media:number = 0;
 
-var ano: number[] = [];
-var total: number = 0.0;
-var ganhadores: number = 0;
+medias.forEach(m => {
+    media += m.Temp_C;
+});
 
-for(x=0;x<29;x++){
-    ano.push(0.0);
-}
+media /= medias.length;
 
-mega.forEach(sorteio =>{
-    ano[parseInt(sorteio.data.substring(6,10))-1996] += sorteio.premio;
-    total += sorteio.premio;
-    ganhadores += sorteio.ganhadores;
-})
+console.log("A média de todas as temperaturas é: ", media.toLocaleString("pt-BR"),"°C");
 
-for(x=0;x<29;x++){
-    console.log("Ano:",x+1996,ano[x].toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'}));
-}
-
-console.log("\n<< Exercício E >>\n");
+/*console.log("\n<< Exercício E >>\n");
 
 console.log("Total Ganhadores:", ganhadores);
 console.log("Total Prêmios Pagos:", total.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'}));
@@ -220,4 +192,22 @@ for(x=0;x<29;x++){
 
 console.log("Ano:",anoapostas);
 console.log("Apostas:", quant.toLocaleString('pt-BR', {style: 'decimal', minimumFractionDigits: 0}));
+
+// Callback function to sort array according to the third column.
+// If callback function will return 1, sort() method swap the row, Otherwise not.
+
+function sort_columnWise(
+    firstRow: Array<number>,
+    secondRow: Array<number>
+): number {
+    if (firstRow[2] === secondRow[2]) { // coluna Temp_C
+        return 0;
+    } else {
+        if (firstRow[2] > secondRow[2]) {
+            return -1;
+        }
+
+        return 1;
+    }
+}
 */
