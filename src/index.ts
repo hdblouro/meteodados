@@ -103,16 +103,17 @@ function compare(a:Meteo,b:Meteo) {
     return 0;
   }
 
+ 
 medias.sort(compare);
 
 var y = 0;
-var ant = medias[0].Data;
+var ant = medias[0].Temp_C;
 console.log("<< Exercício C >>\n");
 for (x = 0; x < medias.length; x++) {
     console.log("Dia:", medias[x].Data , "Temperatura Média: ", medias[x].Temp_C);
-    if(ant.getTime() != medias[x].Data.getTime()){
+    if(ant != medias[x].Temp_C){
         y++;
-        ant = medias[x].Data;
+        ant = medias[x].Temp_C;
     }
     if(y==5){
         break;
